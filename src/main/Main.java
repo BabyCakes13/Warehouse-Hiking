@@ -1,8 +1,10 @@
 package main;
 
-import files.Constants;
-
 public class Main {
+	
+	public static final String EDGES_FILE_PATH = "/home/babycakes/workspace/Basket_Travelling/src/files/edges";
+	public static final String PACKETS_FILE_PATH = "/home/babycakes/workspace/Basket_Travelling/src/files/packets";
+	public static final String BASKETS_FILE_PATH = "/home/babycakes/workspace/Basket_Travelling/src/files/baskets";	
 
 	public static void main(String[] args) {
 		ObjectBuilder c = new ObjectBuilder();
@@ -22,10 +24,9 @@ public class Main {
 	}
 
 	public static void setItems(ObjectBuilder c) {
-
-		c.buildGraph(Constants.EDGES_FILE_PATH);
-		c.buildBaskets(Constants.BASKETS_FILE_PATH);
-		c.buildPackets(Constants.PACKETS_FILE_PATH);
+		c.buildGraph(EDGES_FILE_PATH);
+		c.buildBaskets(BASKETS_FILE_PATH);
+		c.buildPackets(PACKETS_FILE_PATH);
 	}
 
 }
