@@ -23,7 +23,7 @@ public class ObjectBuilder {
 
 	public void buildPackets(String filePath) {
 		FileManager fm = new FileManager(filePath);
-		Map<Integer, ArrayList<Integer>> dataExtracted = fm.getDataExctracted();
+		Map<Integer, ArrayList<Integer>> dataExtracted = fm.extractData();
 		// fm.printDataExtracted();
 
 		for (Map.Entry<Integer, ArrayList<Integer>> data : dataExtracted.entrySet()) {
@@ -40,7 +40,7 @@ public class ObjectBuilder {
 
 	public void buildBaskets(String filePath) {
 		FileManager fm = new FileManager(filePath);
-		Map<Integer, ArrayList<Integer>> dataExtracted = fm.getDataExctracted();
+		Map<Integer, ArrayList<Integer>> dataExtracted = fm.extractData();
 		// fm.printDataExtracted();
 
 		for (Map.Entry<Integer, ArrayList<Integer>> data : dataExtracted.entrySet()) {
@@ -57,7 +57,7 @@ public class ObjectBuilder {
 
 	public void buildGraph(String filePath) {
 		FileManager fm = new FileManager(filePath);
-		Map<Integer, ArrayList<Integer>> dataExtracted = fm.getDataExctracted();
+		Map<Integer, ArrayList<Integer>> dataExtracted = fm.extractData();
 
 		for (Map.Entry<Integer, ArrayList<Integer>> data : dataExtracted.entrySet()) {
 			int startStation = data.getKey();

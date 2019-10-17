@@ -8,21 +8,37 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class which handles the files which contain the basket, warehouse and packets
+ * information. It takes care of reading and extracting the information from the
+ * files.
+ * 
+ * @author babycakes
+ *
+ */
 public class FileManager {
 	String filePath;
 	Map<Integer, ArrayList<Integer>> dataExtracted;
 
+	/**
+	 * Constructor of FileManager class. Initialises the filePath of the manager and
+	 * creates a Map oject which will hold data.
+	 * 
+	 * @param filePath String: Full file path to the file which needs extraction.
+	 */
 	public FileManager(String filePath) {
 		this.filePath = filePath;
 		this.dataExtracted = new HashMap<>();
 	}
 
-	public Map<Integer, ArrayList<Integer>> getDataExctracted() {
-		this.extractData();
-		return this.dataExtracted;
-	}
-
-	public void extractData() {
+	/**
+	 * Method which reads the file line by line, and extracts each row as a Map
+	 * pair.
+	 * 
+	 * @return Map<integer, ArrayList<Integer>>: data from the file as key and
+	 *         multiple values.
+	 */
+	public Map<Integer, ArrayList<Integer>> extractData() {
 		BufferedReader reader = null;
 
 		try {
@@ -47,13 +63,25 @@ public class FileManager {
 				e.printStackTrace();
 			}
 		}
+
+		return this.dataExtracted;
 	}
 
-	public boolean addItemToMap(String line) {
+	/**
+	 * Method which takes a line from the input file and extracts its information.
+	 * The line is treated as: first element on the line is key, the rest elements
+	 * are an array of values. If the key exists, the values will be added to the
+	 * list of the original key.
+	 * 
+	 * @param line String: One line read from the file.
+	 * @return False: if the line has an eronated number of items, True: if the
+	 *         operation completed sucesfully.
+	 */
+	private boolean addItemToMap(String line) {
 		String[] splitLine = line.split(" ");
 		int key;
 		ArrayList<Integer> value = new ArrayList<>();
-		
+
 		if (splitLine.length < 2) {
 			// System.out.println("Line invalid, moving on to next line.");
 			return false;
@@ -64,17 +92,21 @@ public class FileManager {
 		for (int i = 1; i < splitLine.length; i++) {
 			value.add(Integer.parseInt(splitLine[i]));
 		}
-		
+
 		if (this.dataExtracted.containsKey(key)) {
 			ArrayList<Integer> existingValue = this.dataExtracted.get(key);
 			value.addAll(existingValue);
-		} 
-		
+		}
+
 		this.dataExtracted.put(key, value);
 
 		return true;
 	}
 
+	/**
+	 * Method which prints the extracted data from the file, as key and array of
+	 * values.
+	 */
 	public void printDataExtracted() {
 		this.dataExtracted.forEach((key, value) -> System.out.println(key + ": " + value));
 	}

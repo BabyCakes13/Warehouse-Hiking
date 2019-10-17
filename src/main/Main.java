@@ -15,12 +15,6 @@ public class Main {
 	public static void mainLoop(ObjectBuilder c) {
 		InputManager im = new InputManager(c);
 		im.askInput();
-
-		// Searcher search = new Searcher(c);
-		// ArrayList<PossiblePaths> possiblePathsSequence =
-		// search.searchIntermediaryPaths(new ArrayList<>(Arrays.asList(0, 7, 49,
-		// 100)));
-		// search.searchAllPaths(possiblePathsSequence);
 	}
 
 	public static void setItems(ObjectBuilder c) {
