@@ -10,20 +10,20 @@ import structures.Station;
 
 public class Searcher {
 	Graph graph;
-	ArrayList<PossiblePaths> concatenatedPaths;
+	ArrayList<PossibleSolutionPaths> concatenatedPaths;
 	
 	public Searcher(ObjectBuilder ob) {
-		concatenatedPaths = new ArrayList<PossiblePaths>();
+		concatenatedPaths = new ArrayList<PossibleSolutionPaths>();
 		this.graph = ob.getGraph();
 	}
 	
 	private void searchPathRecurent(Station currentStation, Station endStation, Map<Station, Boolean> visitedStations,
-			Path currentPath, PossiblePaths pathsList) {
+			CurrentPath currentPath, PossibleSolutionPaths pathsList) {
 		currentPath.add(currentStation);
 		visitedStations.put(currentStation, true);
 
 		if (currentStation.equals(endStation)) {
-			pathsList.add(new Path(currentPath));
+			pathsList.add(new CurrentPath(currentPath));
 
 			// System.out.println("End station " + currentStation.getStationNumber());
 			// System.out.println("Current Path: " + currentPath.toString());
@@ -45,10 +45,10 @@ public class Searcher {
 
 	}
 	
-	private PossiblePaths searchPaths(Station startStation, Station endStation) {
+	private PossibleSolutionPaths searchPaths(Station startStation, Station endStation) {
 		Map<Station, Boolean> visitedStations = new HashMap<>();
-		PossiblePaths pathsList = new PossiblePaths();
-		Path currentPath = new Path();
+		PossibleSolutionPaths pathsList = new PossibleSolutionPaths();
+		CurrentPath currentPath = new CurrentPath();
 
 		this.searchPathRecurent(startStation, endStation, visitedStations, currentPath, pathsList);
 
@@ -57,8 +57,8 @@ public class Searcher {
 		return pathsList;
 	}
 	
-	public ArrayList<PossiblePaths> searchIntermediaryPaths(ArrayList<Station> intermediaryStations) {
-		ArrayList<PossiblePaths> possilbePathsSequence = new ArrayList<PossiblePaths>();
+	public ArrayList<PossibleSolutionPaths> searchIntermediaryPaths(ArrayList<Station> intermediaryStations) {
+		ArrayList<PossibleSolutionPaths> possilbePathsSequence = new ArrayList<PossibleSolutionPaths>();
 
 		int i;
 		for (i = 0; i < intermediaryStations.size() - 1; i++) {
@@ -72,32 +72,32 @@ public class Searcher {
 		return possilbePathsSequence;
 	}
 	
-	public PossiblePaths searchAllPaths(ArrayList<Station> stationsRequest) {
-		ArrayList<PossiblePaths> possiblePathsList = searchIntermediaryPaths(new ArrayList<>(stationsRequest));
-		PossiblePaths concatenatedPossiblePaths;
-		PossiblePaths previousPossiblePaths = new PossiblePaths();
+	public PossibleSolutionPaths searchAllPaths(ArrayList<Station> stationsRequest) {
+		ArrayList<PossibleSolutionPaths> possiblePathsList = searchIntermediaryPaths(new ArrayList<>(stationsRequest));
+		PossibleSolutionPaths concatenatedPossiblePaths;
+		PossibleSolutionPaths previousPossiblePaths = new PossibleSolutionPaths();
 		int currentPossiblePathsNumber;
 		
 		// System.out.println("Big Blob: " + bigBlob.toString() + "\n");
 		
-		concatenatedPossiblePaths = new PossiblePaths(possiblePathsList.get(0));
-		previousPossiblePaths = new PossiblePaths(concatenatedPossiblePaths);
+		concatenatedPossiblePaths = new PossibleSolutionPaths(possiblePathsList.get(0));
+		previousPossiblePaths = new PossibleSolutionPaths(concatenatedPossiblePaths);
 		
 		for(int i = 1; i < possiblePathsList.size(); i++) {
-			PossiblePaths currentPossiblePaths = possiblePathsList.get(i);
+			PossibleSolutionPaths currentPossiblePaths = possiblePathsList.get(i);
 			
 			 // System.out.println("Previous Blob: " + previousPossiblePaths);
 			 // System.out.println("Current Blob: " + currentPossiblePaths + "\n");
 			
 			currentPossiblePathsNumber = currentPossiblePaths.getSize();
-			concatenatedPossiblePaths = new PossiblePaths();
+			concatenatedPossiblePaths = new PossibleSolutionPaths();
 			
 			for(int j=0; j < currentPossiblePathsNumber; j++) {
-				for (Path currentPath: currentPossiblePaths.possiblePaths) {
-					for(Path previousPath: previousPossiblePaths.possiblePaths) {
+				for (CurrentPath currentPath: currentPossiblePaths.possiblePaths) {
+					for(CurrentPath previousPath: previousPossiblePaths.possiblePaths) {
 						
 						previousPath.pop();
-						Path newPath = new Path(previousPath);
+						CurrentPath newPath = new CurrentPath(previousPath);
 						newPath.concatenatePaths(currentPath);
 						concatenatedPossiblePaths.add(newPath);
 						
@@ -109,7 +109,7 @@ public class Searcher {
 				}
 			}
 			
-			previousPossiblePaths = new PossiblePaths(concatenatedPossiblePaths);
+			previousPossiblePaths = new PossibleSolutionPaths(concatenatedPossiblePaths);
 		}
 		
 		return concatenatedPossiblePaths;

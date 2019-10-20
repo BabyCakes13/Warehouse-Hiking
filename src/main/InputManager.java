@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import items.Basket;
 import items.Packet;
-import search.PossiblePaths;
+import search.PossibleSolutionPaths;
 import search.Searcher;
 import structures.Station;
 
@@ -89,7 +89,7 @@ public class InputManager {
 					allStations.add(allStations.size(), new Station(100));
 
 					// start searching
-					PossiblePaths foundPaths = search.searchAllPaths(allStations);
+					PossibleSolutionPaths foundPaths = search.searchAllPaths(allStations);
 					if (foundPaths.getSize() < 1) {
 						System.out.println("No paths found.");
 					} else {
