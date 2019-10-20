@@ -25,19 +25,22 @@ public class InputManager {
 	Scanner scan;
 	ObjectBuilder ob;
 
+	/**
+	 * Constructor of the InputManager class, initialising a new scanner and an
+	 * object builder.
+	 * 
+	 * @param ob ObjectBuilder: The builder which populates the items (baskets,
+	 *           packets and warehouse) from the files.
+	 */
 	public InputManager(ObjectBuilder ob) {
 		this.scan = new Scanner(System.in);
 		this.ob = ob;
 	}
 
-	public Scanner getScan() {
-		return scan;
-	}
-
-	public void setScan(Scanner scan) {
-		this.scan = scan;
-	}
-
+	/**
+	 * Method which asks the user for a basket and triggers the searching for paths
+	 * for the packet in the basket.
+	 */
 	public void askInput() {
 		System.out.println(INPUT_MESSAGE);
 
@@ -58,11 +61,19 @@ public class InputManager {
 		}
 	}
 
-	public void startProcessing(int basketNumber) {
+	/**
+	 * For each packet in the basket, find out its paths by adding the start and
+	 * stop station of the warehouse and search for all paths starting from the
+	 * start and ending with the end. If no paths found, displays that message.
+	 * 
+	 * @param basketNumber: The number of the basket for processing.
+	 */
+	private void startProcessing(int basketNumber) {
 		Basket basket = checkBasketExists(basketNumber);
 
 		if (basket != null) {
 			ArrayList<Packet> carriedPackets = getPacketsFromBasket(basket);
+
 			for (Packet packetInBasket : carriedPackets) {
 				Packet packet = checkPacketExists(packetInBasket.getPacketNumber());
 
@@ -72,11 +83,12 @@ public class InputManager {
 					Searcher search = new Searcher(ob);
 					ArrayList<Station> requestedStations = checkPacketStationsRequest(packet);
 					ArrayList<Station> allStations = requestedStations;
+
+					// add the start and end of the warehouse stations
 					allStations.add(0, new Station(0));
 					allStations.add(allStations.size(), new Station(100));
 
-					System.out.println(allStations.toString());
-
+					// start searching
 					PossiblePaths foundPaths = search.searchAllPaths(allStations);
 					if (foundPaths.getSize() < 1) {
 						System.out.println("No paths found.");
@@ -91,7 +103,14 @@ public class InputManager {
 		}
 	}
 
-	public Basket checkBasketExists(int basket) {
+	/**
+	 * Method to check that a basket with the input parameter exists in the basket
+	 * map.
+	 * 
+	 * @param basket int: The basket number the user wants to process.
+	 * @return Basket: The found Basket object, null otherwise.
+	 */
+	private Basket checkBasketExists(int basket) {
 		Map<Basket, ArrayList<Packet>> allPackets = ob.getBaskets();
 		Basket searchedBasket = new Basket(basket);
 
@@ -103,7 +122,14 @@ public class InputManager {
 		return searchedBasket;
 	}
 
-	public Packet checkPacketExists(int packet) {
+	/**
+	 * Method to check if the packet number exists in the packets map.
+	 * 
+	 * @param packet int: An integer representing the packet number of the requested
+	 *               packet.
+	 * @return Packet: The Packet object if found; null otherwise.
+	 */
+	private Packet checkPacketExists(int packet) {
 		Map<Packet, ArrayList<Station>> allPackets = ob.getPackets();
 		Packet searchedPacket = new Packet(packet);
 
@@ -115,7 +141,14 @@ public class InputManager {
 		return searchedPacket;
 	}
 
-	public ArrayList<Packet> getPacketsFromBasket(Basket basket) {
+	/**
+	 * Get a list of all the packets which are carried by the input Basket.
+	 * 
+	 * @param basket Basket: The Basket object on which the searching is done.
+	 * @return ArrayList<Packet>: A list with all the packets carried by the input
+	 *         Basket, which will be used for searching of their paths.
+	 */
+	private ArrayList<Packet> getPacketsFromBasket(Basket basket) {
 		ArrayList<Packet> carriedPackets = new ArrayList<>();
 		Map<Basket, ArrayList<Packet>> allBaskets = ob.getBaskets();
 
@@ -123,13 +156,16 @@ public class InputManager {
 		return carriedPackets;
 	}
 
-	public ArrayList<Station> checkPacketStationsRequest(Packet packet) {
-		ArrayList<Station> stationsRequest = ob.getPackets().get(packet);
-		return stationsRequest;
+	/**
+	 * Get the list of required stations for an input Packet.
+	 * 
+	 * @param packet Packet: A Packet object for which the searching is done.
+	 * @return ArrayList<Station>: The list of all station requirements for the
+	 *         packet.
+	 */
+	private ArrayList<Station> checkPacketStationsRequest(Packet packet) {
+		ArrayList<Station> packetStationsRequest = ob.getPackets().get(packet);
+		return packetStationsRequest;
 	}
-
-	public void searchPathsForPackage(Packet packet) {
-		ArrayList<Station> packetRequiredStations = ob.getPackets().get(packet);
-		System.out.println(packetRequiredStations);
-	}
+	
 }
