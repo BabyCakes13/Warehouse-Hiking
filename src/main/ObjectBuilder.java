@@ -83,10 +83,25 @@ public class ObjectBuilder {
 		}
 	}
 
+	/**
+	 * Method which returns the current available baskets read from the basket file
+	 * and the packets they carry.
+	 * 
+	 * @return Map<Basket, ArrayList<Packet>>: The Map which contains a Basket as
+	 *         the key and a list of packets it carries.
+	 */
 	public Map<Basket, ArrayList<Packet>> getBaskets() {
 		return this.baskets;
 	}
 
+	/**
+	 * Method which builds the workstation by adding its stations and paths from the
+	 * graph file. For each file row, representing the start and end of a path, it
+	 * adds that path to the warehouse.
+	 * 
+	 * @param filePath String: The full path to the packets, baskets and graph
+	 *                 files, containing these objects.
+	 */
 	public void buildGraph(String filePath) {
 		FileManager fm = new FileManager(filePath);
 		Map<Integer, ArrayList<Integer>> dataExtracted = fm.extractData();
@@ -102,8 +117,10 @@ public class ObjectBuilder {
 		}
 	}
 
-	/*
+	/**
 	 * Method which returns the current graph containing the warehouse information.
+	 * 
+	 * @return Graph: The graph containing the stations and paths.
 	 */
 	public Graph getGraph() {
 		return this.graph;
