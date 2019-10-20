@@ -10,6 +10,13 @@ import search.PossiblePaths;
 import search.Searcher;
 import structures.Station;
 
+/**
+ * Class which handles user input for reading the basket requirements and
+ * trigerring the computation of finding the paths.
+ * 
+ * @author babycakes
+ *
+ */
 public class InputManager {
 	public static final String INPUT_MESSAGE = "Enter the basket number. Enter x to stop.";
 	public static final String WRONG_INPUT_MESSAGE = "Wrong type of input. Try again or press X to exit.";
@@ -61,15 +68,15 @@ public class InputManager {
 
 				if (packet != null) {
 					System.out.println("Started searching for paths for packet " + packet.getPacketNumber());
-					
+
 					Searcher search = new Searcher(ob);
 					ArrayList<Station> requestedStations = checkPacketStationsRequest(packet);
 					ArrayList<Station> allStations = requestedStations;
 					allStations.add(0, new Station(0));
 					allStations.add(allStations.size(), new Station(100));
-					
+
 					System.out.println(allStations.toString());
-					
+
 					PossiblePaths foundPaths = search.searchAllPaths(allStations);
 					if (foundPaths.getSize() < 1) {
 						System.out.println("No paths found.");
@@ -99,7 +106,7 @@ public class InputManager {
 	public Packet checkPacketExists(int packet) {
 		Map<Packet, ArrayList<Station>> allPackets = ob.getPackets();
 		Packet searchedPacket = new Packet(packet);
-		
+
 		if (allPackets.containsKey(searchedPacket) == false) {
 			System.out.println("Package does not exist.");
 			return null;
@@ -115,7 +122,7 @@ public class InputManager {
 		carriedPackets = allBaskets.get(basket);
 		return carriedPackets;
 	}
-	
+
 	public ArrayList<Station> checkPacketStationsRequest(Packet packet) {
 		ArrayList<Station> stationsRequest = ob.getPackets().get(packet);
 		return stationsRequest;
