@@ -12,14 +12,14 @@ import structures.Station;
  * @author babycakes
  *
  */
-public class CurrentPath {
+public class Path {
 	private ArrayList<Station> path;
 
 	/**
 	 * Constructor of the CurrentPath class which initialises the array which holds
 	 * the stations visited while reaching the destination.
 	 */
-	public CurrentPath() {
+	public Path() {
 		this.path = new ArrayList<Station>();
 	}
 
@@ -29,7 +29,7 @@ public class CurrentPath {
 	 * 
 	 * @param pathObject
 	 */
-	public CurrentPath(CurrentPath pathObject) {
+	public Path(Path pathObject) {
 		this.path = new ArrayList<Station>(pathObject.path);
 	}
 
@@ -50,7 +50,7 @@ public class CurrentPath {
 	 * @param newPath CurrentPath: The CurrentPath object which will give its
 	 *                reached stations up to the current object path.
 	 */
-	public void concatenatePaths(CurrentPath newPath) {
+	public void concatenatePaths(Path newPath) {
 		this.path.addAll(newPath.path);
 	}
 

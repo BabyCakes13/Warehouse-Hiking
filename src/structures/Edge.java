@@ -3,11 +3,11 @@ package structures;
 /*
  * Class which holds a directed edge from two stations, 1 and 2.
  */
-public class Path {
+public class Edge {
 	private int startStation;
 	private int endStation;
 
-	public Path(int station1, int station2) {
+	public Edge(int station1, int station2) {
 		this.startStation = station1;
 		this.endStation = station2;
 	}

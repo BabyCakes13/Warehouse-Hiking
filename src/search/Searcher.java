@@ -18,12 +18,12 @@ public class Searcher {
 	}
 	
 	private void searchPathRecurent(Station currentStation, Station endStation, Map<Station, Boolean> visitedStations,
-			CurrentPath currentPath, PossibleSolutionPaths pathsList) {
+			Path currentPath, PossibleSolutionPaths pathsList) {
 		currentPath.add(currentStation);
 		visitedStations.put(currentStation, true);
 
 		if (currentStation.equals(endStation)) {
-			pathsList.add(new CurrentPath(currentPath));
+			pathsList.add(new Path(currentPath));
 
 			// System.out.println("End station " + currentStation.getStationNumber());
 			// System.out.println("Current Path: " + currentPath.toString());
@@ -48,7 +48,7 @@ public class Searcher {
 	private PossibleSolutionPaths searchPaths(Station startStation, Station endStation) {
 		Map<Station, Boolean> visitedStations = new HashMap<>();
 		PossibleSolutionPaths pathsList = new PossibleSolutionPaths();
-		CurrentPath currentPath = new CurrentPath();
+		Path currentPath = new Path();
 
 		this.searchPathRecurent(startStation, endStation, visitedStations, currentPath, pathsList);
 
@@ -93,11 +93,11 @@ public class Searcher {
 			concatenatedPossiblePaths = new PossibleSolutionPaths();
 			
 			for(int j=0; j < currentPossiblePathsNumber; j++) {
-				for (CurrentPath currentPath: currentPossiblePaths.possiblePaths) {
-					for(CurrentPath previousPath: previousPossiblePaths.possiblePaths) {
+				for (Path currentPath: currentPossiblePaths.possibleSolutionPaths) {
+					for(Path previousPath: previousPossiblePaths.possibleSolutionPaths) {
 						
 						previousPath.pop();
-						CurrentPath newPath = new CurrentPath(previousPath);
+						Path newPath = new Path(previousPath);
 						newPath.concatenatePaths(currentPath);
 						concatenatedPossiblePaths.add(newPath);
 						
