@@ -1,30 +1,26 @@
 package structures;
 
-/*
- * Class which holds a directed edge from two stations, 1 and 2.
+/**
+ * Class which holds a path/edge between two station numbers.
+ * 
+ * @author babycakes
+ *
  */
 public class Edge {
+	@SuppressWarnings("unused")
 	private int startStation;
+	@SuppressWarnings("unused")
 	private int endStation;
 
+	/**
+	 * Constructor of the Edge class, initialising the station numbers.
+	 * 
+	 * @param station1: The station number of the starting station point. Directed
+	 *                  towards station 2.
+	 * @param station2: The station number of the ending station point.
+	 */
 	public Edge(int station1, int station2) {
 		this.startStation = station1;
-		this.endStation = station2;
-	}
-	
-	public int getStartStation() {
-		return startStation;
-	}
-
-	public void setStartStation(int station1) {
-		this.startStation = station1;
-	}
-
-	public int getEndStation() {
-		return endStation;
-	}
-
-	public void setEndStation(int station2) {
 		this.endStation = station2;
 	}
 
