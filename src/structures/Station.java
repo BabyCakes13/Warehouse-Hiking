@@ -2,27 +2,36 @@ package structures;
 
 import java.util.ArrayList;
 
-/*
- * Class representing a node in a graph formed of stations.
- * @param stationNumber: The number of the station represented by the current node.
+/**
+ * Class representing a Station in the warehouse.
+ * 
+ * @author babycakes
+ *
  */
 public class Station {
 	public static int stationID;
 	private int stationNumber;
-	
+
+	/**
+	 * Constructor of the Station class which initialised the object with its
+	 * station number and increases the station ID (#TODO needs usage).
+	 * 
+	 * @param stationNumber: The number of the station in the warehouse.
+	 */
 	public Station(int stationNumber) {
 		this.stationNumber = stationNumber;
 		stationID++;
 	}
-	
-	public void setStationNumber(int stationNumber) {
-		this.stationNumber = stationNumber;
-	}
-	
+
+	/**
+	 * Method to get the station number of the object.
+	 * 
+	 * @return: int: Station's number.
+	 */
 	public int getStationNumber() {
 		return this.stationNumber;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -49,12 +58,18 @@ public class Station {
 	public String toString() {
 		return "Station " + stationNumber;
 	}
-	
-	
+
+	/**
+	 * Method to convert an array of integers to an array of Stations.
+	 * 
+	 * @param integerArray: ArrayList<Integer>: An list of int values to be
+	 *                      transformed to Stations.
+	 * @return ArrayList<Station>: The converted int list to Stations list.
+	 */
 	public static ArrayList<Station> convertArrayToStation(ArrayList<Integer> integerArray) {
 		ArrayList<Station> stationArray = new ArrayList<>();
 		integerArray.forEach(integer -> stationArray.add(new Station(integer)));
-		
+
 		return stationArray;
 	}
 }
