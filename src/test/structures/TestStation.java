@@ -30,15 +30,27 @@ public class TestStation {
 
 	@Test
 	public void testHashCode() {
-		int[] testStationNumbers = { Integer.MIN_VALUE, Integer.MIN_VALUE + 1, Integer.MIN_VALUE + 2,
-									-1, 0, 1,
-									Integer.MAX_VALUE - 2, Integer.MAX_VALUE - 1, Integer.MAX_VALUE };
+		int[] testStationNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
 		
-		for(int stationNumber : testStationNumbers) { 
-			Station firstStation = new Station(stationNumber);
-			Station secondStation = new Station(stationNumber);
-			Assert.assertEquals(firstStation.hashCode(), secondStation.hashCode());
+		final int testRange = 2;
+		for(int stationNumber : testStationNumbers) {
+			for (int i = -testRange ; i <= testRange ; i++) {
+				Station firstStation = new Station(stationNumber + i);
+				Station secondStation = new Station(stationNumber + i);
+				Assert.assertEquals(firstStation.hashCode(), secondStation.hashCode());
+			}
 		}
+	}
+	
+	@Test
+	public void testEqualsEqual() {
+		Station firstStation = new Station(1);
+		Station secondStation = new Station(1);
+		
+		Assert.assertEquals(firstStation, firstStation);
+		Assert.assertEquals(firstStation, secondStation);
+		Assert.assertNotEquals(1, firstStation);
+		Assert.assertNotEquals(firstStation, null);
 	}
 
 }
