@@ -1,6 +1,10 @@
 package test.structures;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import org.junit.Assert;
 
 import structures.Station;
@@ -51,6 +55,25 @@ public class TestStation {
 		Assert.assertEquals(firstStation, secondStation);
 		Assert.assertNotEquals(1, firstStation);
 		Assert.assertNotEquals(firstStation, null);
+	}
+	
+	@Test
+	public void testConvertArrayToStation() {
+		ArrayList<Station> testStations = new ArrayList<Station>();
+		ArrayList<Integer> testIntegers = new ArrayList<Integer>();
+		
+		int[] testStationNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
+		final int testRange = 2;
+		for(int stationNumber: testStationNumbers) {
+			for(int i = -testRange; i <= testRange; i++) {
+				testStations.add(new Station(stationNumber + i));
+				testIntegers.add(stationNumber + i);
+			}
+		}
+		
+		Assert.assertEquals(testStations, Station.convertArrayToStation(testIntegers));
+		
+		
 	}
 
 }
