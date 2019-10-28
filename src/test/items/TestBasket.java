@@ -36,15 +36,21 @@ public class TestBasket {
 	}
 
 	/**
-	 * Method which tests the {@link Basket#equals(Object)}equals method.
+	 * Method which tests the {@link Basket#equals(Object)}equals method. Tests by
+	 * generating two random numbers chosen from the whole domanin, used to create
+	 * and compare {@link Basket} objects.
 	 * 
 	 * @author babycakes
 	 */
 	@Test
 	public void testEquals() {
-		Basket firstBasket = new Basket(1);
-		Basket secondBasket = new Basket(1);
-		Basket thirdBasket = new Basket(2);
+		double domainRange = (double) Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
+		int firstRandomNumber = (int) (Math.random() * domainRange + Integer.MIN_VALUE);
+		int secondRandomNumber = (int) (Math.random() * domainRange + Integer.MIN_VALUE);
+
+		Basket firstBasket = new Basket(firstRandomNumber);
+		Basket secondBasket = new Basket(firstRandomNumber);
+		Basket thirdBasket = new Basket(secondRandomNumber);
 
 		Assert.assertEquals(firstBasket, firstBasket);
 		Assert.assertEquals(firstBasket, secondBasket);
