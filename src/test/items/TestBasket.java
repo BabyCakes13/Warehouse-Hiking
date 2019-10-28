@@ -68,11 +68,12 @@ public class TestBasket {
 	 */
 	@Test
 	public void testToString() {
-		int numberRange = Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
+		double numberRange = (double) Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
 
 		for (int i = 0; i < times; i++) {
 			int newRandom = (int) (Math.random() * numberRange + Integer.MIN_VALUE);
 			Basket newBasket = new Basket(newRandom);
+			
 			Assert.assertEquals("Basket: " + newRandom, newBasket.toString());
 		}
 	}
