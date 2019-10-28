@@ -35,6 +35,8 @@ public class TestStation {
 	 * It tests that two generated Stations have the same hash code if they have the same
 	 * station number. The station numbers are chosen to be in the vicinity of minimum integer
 	 * value, maximum integer value and 0, with +- testRange numbers.
+	 * 
+	 * @author babycakes
 	 */
 	@Test
 	public void testHashCode() {

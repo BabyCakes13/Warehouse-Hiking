@@ -5,10 +5,13 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 import test.items.TestBasket;
+import test.items.TestPacket;
 import test.structures.TestStation;
 
 @RunWith(Suite.class)
-@SuiteClasses({ TestStation.class, TestBasket.class })
+@SuiteClasses({ TestStation.class, 
+				TestBasket.class,
+				TestPacket.class})
 public class JUnitTestSuite {
 
 }
