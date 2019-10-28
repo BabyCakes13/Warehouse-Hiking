@@ -1,6 +1,9 @@
 package test.items;
 
 import org.junit.Test;
+
+import java.util.ArrayList;
+
 import org.junit.Assert;
 
 import items.Packet;
@@ -84,6 +87,18 @@ public class TestPacket {
 
 	@Test
 	public void testConvertArrayToPacket() {
-		//
+		ArrayList<Packet> testPackets = new ArrayList<Packet>();
+		ArrayList<Integer> testIntegers = new ArrayList<Integer>();
+		
+		for(int number : domainCoverNumbers) {
+			for(int i = -times; i <= times; i++) {
+				Packet newPacket = new Packet(number + i);
+				
+				testIntegers.add(number + i);
+				testPackets.add(newPacket);
+			}
+		}
+		
+		Assert.assertEquals(testPackets, Packet.convertArrayToPacket(testIntegers));
 	}
 }
