@@ -1,4 +1,4 @@
-package test.structures;
+	package test.structures;
 
 import org.junit.Test;
 import java.util.ArrayList;
@@ -30,6 +30,12 @@ public class TestStation {
 		}
 	}
 
+	/**
+	 * Method to test the hashCode function from the Station class.
+	 * It tests that two generated Stations have the same hash code if they have the same
+	 * station number. The station numbers are chosen to be in the vicinity of minimum integer
+	 * value, maximum integer value and 0, with +- testRange numbers.
+	 */
 	@Test
 	public void testHashCode() {
 		int[] testStationNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
@@ -43,20 +49,17 @@ public class TestStation {
 			}
 		}
 	}
-
+	
 	@Test
 	public void testEqualsEqual() {
 		Station firstStation = new Station(1);
 		Station secondStation = new Station(1);
+		Station thirdStation = new Station(2);
 
 		Assert.assertEquals(firstStation, firstStation);
 		Assert.assertEquals(firstStation, secondStation);
-
 		Assert.assertNotEquals(firstStation, 42);
-
 		Assert.assertNotEquals(firstStation, null);
-
-		Station thirdStation = new Station(2);
 		Assert.assertNotEquals(thirdStation, firstStation);
 
 	}
