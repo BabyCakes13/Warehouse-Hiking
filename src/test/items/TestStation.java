@@ -12,14 +12,6 @@ public class TestStation implements TestItemsInterface {
 
 	@Test
 	@Override
-	public void testToStringBasic() {
-		int[] testStationNumbers = { -1, 0, 1 };
-
-		for (int i : testStationNumbers) {
-			Station newStation = new Station(i);
-			Assert.assertEquals("Station " + i, newStation.toString());
-		}
-	}
 
 	@Test
 	public void testToStringGenerated() {
