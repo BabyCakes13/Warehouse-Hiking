@@ -8,7 +8,7 @@ import org.junit.Assert;
 
 import items.Packet;
 
-public class TestPacket {
+public class TestPacket implements TestItemsInterface {
 
 	private final int times = 1000;
 	private final int[] domainCoverNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
@@ -40,6 +40,7 @@ public class TestPacket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testHashCode() {
 		for (int number : domainCoverNumbers) {
 			for (int i = -times; i <= times; i++) {
@@ -57,6 +58,7 @@ public class TestPacket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testEquals() {
 		Packet firstPacket = new Packet(1);
 		Packet secondPacket = new Packet(1);
@@ -77,6 +79,7 @@ public class TestPacket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testToString() {
 		double domainRange = (double) Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
 		int randomNumber = (int) (Math.random() * domainRange + Integer.MIN_VALUE);

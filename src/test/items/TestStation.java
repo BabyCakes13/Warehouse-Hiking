@@ -8,9 +8,10 @@ import java.util.ArrayList;
 
 import org.junit.Assert;
 
-public class TestStation {
+public class TestStation implements TestItemsInterface {
 
 	@Test
+	@Override
 	public void testToStringBasic() {
 		int[] testStationNumbers = { -1, 0, 1 };
 
@@ -41,6 +42,7 @@ public class TestStation {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testHashCode() {
 		int[] testStationNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
 
@@ -55,6 +57,7 @@ public class TestStation {
 	}
 	
 	@Test
+	@Override
 	public void testEqualsEqual() {
 		Station firstStation = new Station(1);
 		Station secondStation = new Station(1);

@@ -10,7 +10,7 @@ import org.junit.Test;
  * @author babycakes
  *
  */
-public class TestBasket {
+public class TestBasket implements TestItemsInterface{
 
 	private final int times = 1000;
 	private final int[] domainCoverNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
@@ -24,6 +24,7 @@ public class TestBasket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testHashCode() {
 		for (int number : domainCoverNumbers) {
 			for (int i = -times; i < times; i++) {
@@ -41,6 +42,7 @@ public class TestBasket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testEquals() {
 		Basket firstBasket = new Basket(1);
 		Basket secondBasket = new Basket(1);
@@ -61,6 +63,7 @@ public class TestBasket {
 	 * @author babycakes
 	 */
 	@Test
+	@Override
 	public void testToString() {
 		double numberRange = (double) Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
 
