@@ -1,4 +1,4 @@
-	package test.items;
+package test.items;
 
 import org.junit.Test;
 
@@ -12,9 +12,7 @@ public class TestStation implements TestItemsInterface {
 
 	@Test
 	@Override
-
-	@Test
-	public void testToStringGenerated() {
+	public void testToString() {
 		double range = (double) Integer.MAX_VALUE - Integer.MIN_VALUE + 1;
 
 		final int stationsNumber = 1000;
@@ -26,10 +24,10 @@ public class TestStation implements TestItemsInterface {
 	}
 
 	/**
-	 * Method to test the hashCode function from the Station class.
-	 * It tests that two generated Stations have the same hash code if they have the same
-	 * station number. The station numbers are chosen to be in the vicinity of minimum integer
-	 * value, maximum integer value and 0, with +- testRange numbers.
+	 * Method to test the hashCode function from the Station class. It tests that
+	 * two generated Stations have the same hash code if they have the same station
+	 * number. The station numbers are chosen to be in the vicinity of minimum
+	 * integer value, maximum integer value and 0, with +- testRange numbers.
 	 * 
 	 * @author babycakes
 	 */
@@ -47,10 +45,10 @@ public class TestStation implements TestItemsInterface {
 			}
 		}
 	}
-	
+
 	@Test
 	@Override
-	public void testEqualsEqual() {
+	public void testEquals() {
 		Station firstStation = new Station(1);
 		Station secondStation = new Station(1);
 		Station thirdStation = new Station(2);

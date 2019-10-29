@@ -14,25 +14,6 @@ public class TestPacket implements TestItemsInterface {
 	private final int[] domainCoverNumbers = { Integer.MIN_VALUE, 0, Integer.MAX_VALUE };
 
 	/**
-	 * Method to test the {@link Packet#getPacketNumber()} method. Tests by
-	 * comparing the packet number given to the constructor and the number got back
-	 * from the {@link Packet#getPacketNumber()} method. The test is done on numbers
-	 * from the edges and middle of the domain.
-	 * 
-	 * @author babycakes
-	 */
-	@Test
-	public void testGetPacketNumber() {
-		for (int number : domainCoverNumbers) {
-			for (int i = -times; i <= times; i++) {
-				Packet newPacket = new Packet(number + i);
-
-				Assert.assertEquals(number + i, newPacket.getPacketNumber());
-			}
-		}
-	}
-
-	/**
 	 * Method to test the {@link Packet#hashCode()} method. Tests by comparing the
 	 * hash codes of numbers varying around the edges and middle of the domain.
 	 * ({@link #times} numbers before and after the edges and middle.
@@ -95,16 +76,35 @@ public class TestPacket implements TestItemsInterface {
 	public void testConvertArrayToPacket() {
 		ArrayList<Packet> testPackets = new ArrayList<Packet>();
 		ArrayList<Integer> testIntegers = new ArrayList<Integer>();
-		
-		for(int number : domainCoverNumbers) {
-			for(int i = -times; i <= times; i++) {
+
+		for (int number : domainCoverNumbers) {
+			for (int i = -times; i <= times; i++) {
 				Packet newPacket = new Packet(number + i);
-				
+
 				testIntegers.add(number + i);
 				testPackets.add(newPacket);
 			}
 		}
-		
+
 		Assert.assertEquals(testPackets, Packet.convertArrayToPacket(testIntegers));
+	}
+
+	/**
+	 * Method to test the {@link Packet#getPacketNumber()} method. Tests by
+	 * comparing the packet number given to the constructor and the number got back
+	 * from the {@link Packet#getPacketNumber()} method. The test is done on numbers
+	 * from the edges and middle of the domain.
+	 * 
+	 * @author babycakes
+	 */
+	@Test
+	public void testGetPacketNumber() {
+		for (int number : domainCoverNumbers) {
+			for (int i = -times; i <= times; i++) {
+				Packet newPacket = new Packet(number + i);
+
+				Assert.assertEquals(number + i, newPacket.getPacketNumber());
+			}
+		}
 	}
 }
