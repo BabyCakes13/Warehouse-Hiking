@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import structures.Station;
-
 /**
  * Class which represents the paths and stations from the warehouse, acting as a
  * directed graph. The warehouse has a number of stations, connected to each

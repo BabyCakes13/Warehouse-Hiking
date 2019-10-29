@@ -8,7 +8,7 @@ import files.FileManager;
 import items.Basket;
 import items.Graph;
 import items.Packet;
-import structures.Station;
+import items.Station;
 
 /**
  * Class which initialises the structures (baskets, packets and warehouse) with

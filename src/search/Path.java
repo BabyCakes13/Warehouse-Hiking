@@ -2,7 +2,7 @@ package search;
 
 import java.util.ArrayList;
 
-import structures.Station;
+import items.Station;
 
 /**
  * Class which represents a Path between two stations (begin, destination),

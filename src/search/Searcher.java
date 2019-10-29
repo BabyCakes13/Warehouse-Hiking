@@ -5,8 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import items.Graph;
+import items.Station;
 import main.ObjectBuilder;
-import structures.Station;
 
 /**
  * Class which handles the searching process for a packet's requirements. It

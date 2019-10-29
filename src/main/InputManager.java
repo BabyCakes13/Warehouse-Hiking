@@ -6,9 +6,9 @@ import java.util.Scanner;
 
 import items.Basket;
 import items.Packet;
+import items.Station;
 import search.PossibleSolutionPaths;
 import search.Searcher;
-import structures.Station;
 
 /**
  * Class which handles user input for reading the basket requirements and
