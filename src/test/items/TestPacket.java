@@ -85,6 +85,9 @@ public class TestPacket {
 		Assert.assertEquals("Packet: " + randomNumber, newPacket.toString());
 	}
 
+	/**
+	 * Method to test the {@link Packet#convertArrayToPacket(ArrayList) method.
+	 */
 	@Test
 	public void testConvertArrayToPacket() {
 		ArrayList<Packet> testPackets = new ArrayList<Packet>();
