@@ -1,10 +1,12 @@
-	package test.structures;
+	package test.items;
 
 import org.junit.Test;
+
+import items.Station;
+
 import java.util.ArrayList;
 
 import org.junit.Assert;
-import structures.Station;
 
 public class TestStation {
 

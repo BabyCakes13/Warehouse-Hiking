@@ -6,7 +6,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import test.items.TestBasket;
 import test.items.TestPacket;
-import test.structures.TestStation;
+import test.items.TestStation;
 
 @RunWith(Suite.class)
 @SuiteClasses({ TestStation.class, 
